@@ -1,0 +1,27 @@
+{
+  "title": "Requirements for Transferees",
+  "intro": "For students coming from another college or university. Your earned credits will be evaluated before you enroll.",
+  "documents": [
+    { "name": "Transcript of records for evaluation", "note": "Original copy stamped \"Copy for Riverside College\"" },
+    { "name": "Honorable dismissal", "note": "Issued by your previous school" },
+    { "name": "Certificate of good moral character", "note": "Issued by your previous school" },
+    { "name": "PSA birth certificate", "note": "Original and 1 photocopy" },
+    { "name": "2x2 ID photos", "note": "4 copies, recent, white background" },
+    { "name": "Completed transfer application form", "note": "Get a copy at the Registrar's Office" }
+  ],
+  "steps": [
+    { "title": "Request your documents", "description": "Ask your previous school for your transcript, honorable dismissal and good moral certificate." },
+    { "title": "Submit the transfer application", "description": "Bring all requirements to the Registrar's Office." },
+    { "title": "Credit evaluation", "description": "The program head evaluates which subjects can be credited. This takes about one week." },
+    { "title": "Confirm and enroll", "description": "Review your evaluation with the Registrar and pay the enrollment fees." }
+  ],
+  "deadlines": [
+    { "label": "Submission of documents", "when": "January 15, 2027" },
+    { "label": "Credit evaluation results", "when": "Within 7 working days of submission" }
+  ],
+  "fees": [
+    { "label": "Credit evaluation fee", "amount": "PHP 300" },
+    { "label": "Enrollment deposit", "amount": "PHP 2,000" }
+  ],
+  "contact": { "office": "Registrar's Office", "email": "registrar@riverside.example", "phone": "(02) 8123-4568" }
+}

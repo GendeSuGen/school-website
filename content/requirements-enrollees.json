@@ -1,0 +1,26 @@
+{
+  "title": "Requirements for New Enrollees",
+  "intro": "For first-time college students. Prepare the documents below and submit them to the Registrar's Office.",
+  "documents": [
+    { "name": "Senior High School report card (Form 138)", "note": "Original and 2 photocopies" },
+    { "name": "Certificate of good moral character", "note": "Issued by your previous school" },
+    { "name": "PSA birth certificate", "note": "Original and 1 photocopy" },
+    { "name": "2x2 ID photos", "note": "4 copies, recent, white background" },
+    { "name": "Completed admission form", "note": "Get a copy at the Registrar's Office" }
+  ],
+  "steps": [
+    { "title": "Get and fill out the admission form", "description": "Pick one up at the Registrar's Office, or download it from this page once the school uploads it." },
+    { "title": "Submit your documents", "description": "Bring all requirements to the Registrar's Office for checking." },
+    { "title": "Take the entrance assessment", "description": "You will receive your schedule when your documents are accepted." },
+    { "title": "Pay the enrollment fees", "description": "Pay at the Cashier after you receive your admission result." }
+  ],
+  "deadlines": [
+    { "label": "Submission of documents", "when": "January 31, 2027" },
+    { "label": "Entrance assessment", "when": "February 6 and 13, 2027" }
+  ],
+  "fees": [
+    { "label": "Admission and assessment fee", "amount": "PHP 500" },
+    { "label": "Enrollment deposit", "amount": "PHP 2,000" }
+  ],
+  "contact": { "office": "Registrar's Office", "email": "registrar@riverside.example", "phone": "(02) 8123-4568" }
+}

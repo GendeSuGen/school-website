@@ -1,0 +1,31 @@
+{
+  "name": "Riverside College",
+  "tagline": "Learning today, leading tomorrow.",
+  "hero": {
+    "headline": "Your future starts at Riverside College",
+    "subheadline": "A welcoming community where students grow in knowledge, character and purpose. Find out what you need to enroll or transfer."
+  },
+  "about": {
+    "history": "Riverside College was founded in 1998 by a group of local educators who believed that quality higher education should be within reach of every family in the region. From a single building with 80 students, it has grown into a campus serving more than 3,000 learners across business, education, engineering, health sciences and the arts.\n\nToday the college is known for small classes, dedicated faculty and strong ties with local employers and communities.",
+    "mission": "To form competent, ethical and compassionate graduates who contribute to the progress of their communities.",
+    "vision": "A leading community college recognized for excellence, integrity and service.",
+    "leadership": [
+      { "name": "Dr. Maria Santos", "role": "College President", "message": "Welcome to Riverside. Every student here is known by name and supported to succeed." },
+      { "name": "Prof. Antonio Reyes", "role": "Vice President for Academic Affairs" },
+      { "name": "Ms. Elena Cruz", "role": "College Registrar" }
+    ],
+    "campusFacts": [
+      { "label": "Students", "value": "3,000+" },
+      { "label": "Faculty", "value": "150" },
+      { "label": "Founded", "value": "1998" },
+      { "label": "Campus size", "value": "12 hectares" }
+    ]
+  },
+  "contact": {
+    "address": "123 Riverside Avenue, Sample City",
+    "phone": "(02) 8123-4567",
+    "email": "info@riverside.example",
+    "hours": "Monday to Friday, 8:00 AM to 5:00 PM",
+    "mapUrl": "https://www.openstreetmap.org/search?query=Sample%20City"
+  }
+}

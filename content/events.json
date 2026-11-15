@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "enrollment-orientation-2027",
+    "title": "Enrollment Orientation for New Students",
+    "date": "2026-12-12",
+    "time": "9:00 AM - 12:00 PM",
+    "location": "Main Auditorium",
+    "category": "Admissions",
+    "summary": "A walk-through of the enrollment process, programs and scholarships for incoming students and their parents.",
+    "description": "Meet the registrar, tour the campus and ask questions about programs, fees and scholarships. Bring your parents or guardians. Light refreshments will be served."
+  },
+  {
+    "slug": "christmas-program-2026",
+    "title": "Christmas Program and Community Dinner",
+    "date": "2026-12-19",
+    "time": "5:00 PM",
+    "location": "College Gymnasium",
+    "category": "Campus Life",
+    "summary": "Songs, performances and a shared dinner for students, staff and families.",
+    "description": "Students and faculty present holiday performances followed by a community dinner. All are welcome."
+  },
+  {
+    "slug": "transferee-info-day",
+    "title": "Transferee Information Day",
+    "date": "2027-01-16",
+    "time": "10:00 AM - 2:00 PM",
+    "location": "Registrar's Office",
+    "category": "Admissions",
+    "summary": "Learn how your earned credits can be evaluated and credited when transferring to Riverside.",
+    "description": "Bring your transcript of records for a preliminary credit evaluation by our program heads."
+  },
+  {
+    "slug": "science-fair-2026",
+    "title": "Science and Innovation Fair",
+    "date": "2026-11-05",
+    "endDate": "2026-11-06",
+    "time": "8:00 AM - 4:00 PM",
+    "location": "Science Building",
+    "category": "Academics",
+    "summary": "Student research and engineering projects on display, with awards for the best entries."
+  },
+  {
+    "slug": "foundation-day-2026",
+    "title": "Foundation Day Celebration",
+    "date": "2026-09-14",
+    "location": "Campus Grounds",
+    "category": "Campus Life",
+    "summary": "Riverside celebrated 28 years with games, a parade and a thanksgiving mass."
+  }
+]

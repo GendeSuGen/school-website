@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "enrollment-now-open",
+    "title": "Enrollment for the Next Semester Is Now Open",
+    "date": "2026-11-10",
+    "author": "Office of the Registrar",
+    "category": "Admissions",
+    "summary": "Enrollment for new students and transferees is open. Here is what to prepare and where to go.",
+    "body": "enrollment-now-open.md"
+  },
+  {
+    "slug": "science-fair-winners",
+    "title": "Science and Innovation Fair Winners Announced",
+    "date": "2026-11-07",
+    "author": "Communications Office",
+    "category": "Academics",
+    "summary": "Congratulations to this year's winning teams and all who took part.",
+    "body": "science-fair-winners.md"
+  },
+  {
+    "slug": "welcome-from-the-president",
+    "title": "A Welcome from the President",
+    "date": "2026-10-01",
+    "author": "Dr. Maria Santos",
+    "category": "Campus Life",
+    "summary": "A short message for everyone considering a place at Riverside College.",
+    "body": "welcome-from-the-president.md"
+  }
+]
