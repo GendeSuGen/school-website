@@ -4,6 +4,8 @@ import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { loadContent } from "./content";
 
+let pub: string;
+
 const site = {
   name: "Test College", tagline: "Learn", hero: { headline: "Welcome", subheadline: "Apply today" },
   about: { history: "h", mission: "m", vision: "v", leadership: [{ name: "Dr. A", role: "President" }], campusFacts: [{ label: "Students", value: "100" }] },
@@ -22,6 +24,7 @@ const write = (file: string, data: unknown) => writeFileSync(join(dir, file), ty
 
 beforeEach(() => {
   dir = mkdtempSync(join(tmpdir(), "content-"));
+  pub = mkdtempSync(join(tmpdir(), "public-"));
   mkdirSync(join(dir, "posts"));
   write("site.json", site);
   write("posts.json", [post]);
@@ -30,11 +33,14 @@ beforeEach(() => {
   write("requirements-transferees.json", { ...reqs, title: "Transferee Requirements" });
   write("posts/hello.md", "# Hello\n\nBody text.");
 });
-afterEach(() => rmSync(dir, { recursive: true, force: true }));
+afterEach(() => {
+  rmSync(dir, { recursive: true, force: true });
+  rmSync(pub, { recursive: true, force: true });
+});
 
 describe("loadContent", () => {
   it("loads every content file and attaches each post's Markdown body", () => {
-    const c = loadContent(dir);
+    const c = loadContent(dir, pub);
     expect(c.site.name).toBe("Test College");
     expect(c.events.map((e) => e.slug)).toEqual(["fair"]);
     expect(c.requirements.enrollees.title).toBe("Requirements");
@@ -45,26 +51,41 @@ describe("loadContent", () => {
   it("returns posts newest first", () => {
     write("posts.json", [post, { ...post, slug: "newer", date: "2026-11-10", body: "newer.md" }]);
     write("posts/newer.md", "newer");
-    expect(loadContent(dir).posts.map((p) => p.slug)).toEqual(["newer", "hello"]);
+    expect(loadContent(dir, pub).posts.map((p) => p.slug)).toEqual(["newer", "hello"]);
   });
 
   it("fails naming the file and field when a value is invalid", () => {
     write("events.json", [{ ...event, date: "December 1" }]);
-    expect(() => loadContent(dir)).toThrowError(/events\.json.*date/s);
+    expect(() => loadContent(dir, pub)).toThrowError(/events\.json.*date/s);
   });
 
   it("fails naming the file when the JSON is malformed", () => {
     write("site.json", "{ not json");
-    expect(() => loadContent(dir)).toThrowError(/site\.json/);
+    expect(() => loadContent(dir, pub)).toThrowError(/site\.json/);
   });
 
   it("fails when a post points at a Markdown file that does not exist", () => {
     write("posts.json", [{ ...post, body: "missing.md" }]);
-    expect(() => loadContent(dir)).toThrowError(/missing\.md/);
+    expect(() => loadContent(dir, pub)).toThrowError(/missing\.md/);
   });
 
   it("fails when two entries share a slug", () => {
     write("events.json", [event, event]);
-    expect(() => loadContent(dir)).toThrowError(/duplicate.*fair/i);
+    expect(() => loadContent(dir, pub)).toThrowError(/duplicate.*fair/i);
+  });
+
+  it("fails when an image or PDF path does not exist in public/", () => {
+    write("events.json", [{ ...event, image: "/images/missing.jpg" }]);
+    expect(() => loadContent(dir, pub)).toThrowError(/events\.json.*\/images\/missing\.jpg/s);
+    write("requirements-enrollees.json", { ...reqs, formPdf: "/forms/missing.pdf" });
+    write("events.json", [event]);
+    expect(() => loadContent(dir, pub)).toThrowError(/requirements-enrollees\.json.*\/forms\/missing\.pdf/s);
+  });
+
+  it("accepts image and PDF paths that exist in public/", () => {
+    mkdirSync(join(pub, "images"));
+    writeFileSync(join(pub, "images", "fair.jpg"), "x");
+    write("events.json", [{ ...event, image: "/images/fair.jpg" }]);
+    expect(loadContent(dir, pub).events[0].image).toBe("/images/fair.jpg");
   });
 });

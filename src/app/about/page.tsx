@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { loadContent } from "../../lib/content";
+import { getContent } from "../../lib/content";
+import { telHref } from "../../lib/format";
 
 export const metadata: Metadata = {
   title: "About",
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  const { site } = loadContent();
+  const { site } = getContent();
   const { about, contact } = site;
 
   return (
@@ -56,7 +57,7 @@ export default function AboutPage() {
         <h2 id="visit">Visit or contact us</h2>
         <address>
           <p>{contact.address}</p>
-          <p>Phone: <a href={`tel:${contact.phone.replace(/[^\d+]/g, "")}`}>{contact.phone}</a></p>
+          <p>Phone: <a href={telHref(contact.phone)}>{contact.phone}</a></p>
           <p>Email: <a href={`mailto:${contact.email}`}>{contact.email}</a></p>
           <p>Office hours: {contact.hours}</p>
           {contact.mapUrl ? <p><a href={contact.mapUrl}>View on a map</a></p> : null}

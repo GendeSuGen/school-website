@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PostCard } from "../../components/Cards";
-import { loadContent } from "../../lib/content";
+import { getContent } from "../../lib/content";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
-  const { posts } = loadContent();
+  const { posts } = getContent();
   return (
     <>
       <h1>Blog</h1>

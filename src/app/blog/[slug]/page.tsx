@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { loadContent } from "../../../lib/content";
+import { getContent, getPost } from "../../../lib/content";
 import { formatDate } from "../../../lib/format";
 import { renderMarkdown } from "../../../lib/markdown";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return loadContent().posts.map((p) => ({ slug: p.slug }));
+  return getContent().posts.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const post = loadContent().posts.find((p) => p.slug === slug);
+  const post = getPost(slug);
   if (!post) return {};
   return {
     title: post.title,
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): P
 
 export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
   const { slug } = await params;
-  const post = loadContent().posts.find((p) => p.slug === slug);
+  const post = getPost(slug);
   if (!post) notFound();
 
   return (

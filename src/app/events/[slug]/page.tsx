@@ -1,25 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { loadContent } from "../../../lib/content";
+import { getContent, getEvent } from "../../../lib/content";
 import { formatDateRange } from "../../../lib/format";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return loadContent().events.map((e) => ({ slug: e.slug }));
+  return getContent().events.map((e) => ({ slug: e.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/events/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const event = loadContent().events.find((e) => e.slug === slug);
+  const event = getEvent(slug);
   if (!event) return {};
   return { title: event.title, description: event.summary, openGraph: { title: event.title, description: event.summary } };
 }
 
 export default async function EventPage({ params }: PageProps<"/events/[slug]">) {
   const { slug } = await params;
-  const event = loadContent().events.find((e) => e.slug === slug);
+  const event = getEvent(slug);
   if (!event) notFound();
 
   return (

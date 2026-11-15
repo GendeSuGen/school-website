@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { EventsBrowser } from "../../components/EventsBrowser";
-import { loadContent } from "../../lib/content";
+import { getContent } from "../../lib/content";
 import { splitEvents } from "../../lib/events";
 import { todayISO } from "../../lib/format";
 
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default function EventsPage() {
-  const { upcoming, past } = splitEvents(loadContent().events, todayISO());
+  const { upcoming, past } = splitEvents(getContent().events, todayISO());
   return (
     <>
       <h1>Events</h1>

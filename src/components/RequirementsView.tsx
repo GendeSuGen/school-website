@@ -1,3 +1,4 @@
+import { telHref } from "../lib/format";
 import type { Requirements } from "../lib/schemas";
 import { PrintButton } from "./PrintButton";
 
@@ -59,7 +60,7 @@ export function RequirementsView({ data }: { data: Requirements }) {
         <h2 id="questions">Questions?</h2>
         <p>
           {data.contact.office}: <a href={`mailto:${data.contact.email}`}>{data.contact.email}</a> ·{" "}
-          <a href={`tel:${data.contact.phone.replace(/[^\d+]/g, "")}`}>{data.contact.phone}</a>
+          <a href={telHref(data.contact.phone)}>{data.contact.phone}</a>
         </p>
       </section>
     </>

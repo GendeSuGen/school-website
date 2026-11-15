@@ -14,6 +14,7 @@ export type Content = {
 };
 
 export const CONTENT_DIR = join(process.cwd(), "content");
+export const PUBLIC_DIR = join(process.cwd(), "public");
 
 function readJson<T>(root: string, file: string, schema: z.ZodType<T>): T {
   let raw: unknown;
@@ -38,13 +39,34 @@ function assertUniqueSlugs(file: string, items: { slug: string }[]) {
   }
 }
 
+function assertPublicFiles(publicDir: string, file: string, paths: (string | undefined)[]) {
+  for (const path of paths) {
+    if (path && !existsSync(join(publicDir, path))) {
+      throw new Error(`content/${file}: "${path}" does not exist in public/ (put the file there or fix the path)`);
+    }
+  }
+}
+
+let cached: Content | undefined;
+
+/** Content for pages: loaded once per build (re-read on every request in dev so edits show up). */
+export function getContent(): Content {
+  if (process.env.NODE_ENV !== "production") return loadContent();
+  return (cached ??= loadContent());
+}
+
+export const getPost = (slug: string) => getContent().posts.find((p) => p.slug === slug);
+export const getEvent = (slug: string) => getContent().events.find((e) => e.slug === slug);
+
 /** Reads and validates every content file. Throws a descriptive error on the first problem. */
-export function loadContent(root: string = CONTENT_DIR): Content {
+export function loadContent(root: string = CONTENT_DIR, publicDir: string = PUBLIC_DIR): Content {
   const site = readJson(root, "site.json", siteSchema);
   const events = readJson(root, "events.json", z.array(eventSchema));
   const postMetas = readJson(root, "posts.json", z.array(postMetaSchema));
   assertUniqueSlugs("events.json", events);
   assertUniqueSlugs("posts.json", postMetas);
+  assertPublicFiles(publicDir, "events.json", events.map((e) => e.image));
+  assertPublicFiles(publicDir, "posts.json", postMetas.map((p) => p.image));
 
   const posts: Post[] = postMetas
     .map((meta) => {
@@ -54,13 +76,10 @@ export function loadContent(root: string = CONTENT_DIR): Content {
     })
     .sort((a, b) => b.date.localeCompare(a.date));
 
-  return {
-    site,
-    posts,
-    events,
-    requirements: {
-      enrollees: readJson(root, "requirements-enrollees.json", requirementsSchema),
-      transferees: readJson(root, "requirements-transferees.json", requirementsSchema),
-    },
-  };
+  const enrollees = readJson(root, "requirements-enrollees.json", requirementsSchema);
+  const transferees = readJson(root, "requirements-transferees.json", requirementsSchema);
+  assertPublicFiles(publicDir, "requirements-enrollees.json", [enrollees.formPdf]);
+  assertPublicFiles(publicDir, "requirements-transferees.json", [transferees.formPdf]);
+
+  return { site, posts, events, requirements: { enrollees, transferees } };
 }

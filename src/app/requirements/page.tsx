@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { loadContent } from "../../lib/content";
+import { getContent } from "../../lib/content";
 
 export const metadata: Metadata = {
   title: "Requirements",
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default function RequirementsPage() {
-  const { requirements } = loadContent();
+  const { requirements } = getContent();
   return (
     <>
       <h1>Requirements</h1>

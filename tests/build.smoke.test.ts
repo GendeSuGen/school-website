@@ -32,6 +32,12 @@ describe("static export", () => {
     expect(readFileSync(join(OUT, "robots.txt"), "utf8")).toContain("Sitemap:");
   });
 
+  it("sets a social share image and a footer map link", () => {
+    expect(html("")).toMatch(/<meta property="og:image" content="[^"]+opengraph-image/);
+    expect(html("blog/enrollment-now-open")).toMatch(/og:image/);
+    expect(html("")).toContain("Find us on the map");
+  });
+
   it("splits Home events using the build date, not stale content", () => {
     // Past events from the sample data must never appear in Home's upcoming list.
     expect(html("")).not.toContain("Foundation Day Celebration");

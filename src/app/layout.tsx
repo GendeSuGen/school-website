@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Footer, Header } from "../components/SiteChrome";
-import { loadContent } from "../lib/content";
+import { getContent } from "../lib/content";
 import { SITE_URL } from "../lib/format";
 import "./globals.css";
 
 export function generateMetadata(): Metadata {
-  const { site } = loadContent();
+  const { site } = getContent();
   return {
     metadataBase: new URL(SITE_URL),
     title: { default: `${site.name} | ${site.tagline}`, template: `%s | ${site.name}` },
@@ -15,7 +15,7 @@ export function generateMetadata(): Metadata {
 }
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
-  const { site } = loadContent();
+  const { site } = getContent();
   return (
     <html lang="en">
       <body>

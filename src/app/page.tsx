@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { EventCard, PostCard } from "../components/Cards";
-import { loadContent } from "../lib/content";
+import { getContent } from "../lib/content";
 import { splitEvents } from "../lib/events";
 import { todayISO } from "../lib/format";
 
 export default function HomePage() {
-  const { site, posts, events } = loadContent();
+  const { site, posts, events } = getContent();
   const { upcoming } = splitEvents(events, todayISO());
 
   return (

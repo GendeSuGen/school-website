@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { telHref } from "../lib/format";
 import type { Site } from "../lib/schemas";
 
 const NAV = [
@@ -41,9 +42,10 @@ export function Footer({ site }: { site: Site }) {
         <address>
           <p className="footer-title">Contact us</p>
           <p>{contact.address}</p>
-          <p><a href={`tel:${contact.phone.replace(/[^\d+]/g, "")}`}>{contact.phone}</a></p>
+          <p><a href={telHref(contact.phone)}>{contact.phone}</a></p>
           <p><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
           <p>{contact.hours}</p>
+          {contact.mapUrl ? <p><a href={contact.mapUrl}>Find us on the map</a></p> : null}
         </address>
         <div>
           <p className="footer-title">Explore</p>
