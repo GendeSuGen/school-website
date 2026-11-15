@@ -11,6 +11,8 @@ if (!process.env.NEXT_PUBLIC_SITE_URL && process.argv.includes("build")) {
 const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
+  // Set NEXT_PUBLIC_BASE_PATH (for example /school-website) when hosting under a subpath, as GitHub Pages project sites do.
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || undefined,
   images: { unoptimized: true },
 };
 

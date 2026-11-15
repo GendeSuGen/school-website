@@ -1,4 +1,4 @@
-import { telHref } from "../lib/format";
+import { publicUrl, telHref } from "../lib/format";
 import { ui } from "../lib/strings";
 import type { Requirements } from "../lib/schemas";
 import { PrintButton } from "./PrintButton";
@@ -10,7 +10,7 @@ export function RequirementsView({ data }: { data: Requirements }) {
       <p className="no-print actions">
         <PrintButton />
         {data.formPdf ? (
-          <a className="btn btn-secondary" href={data.formPdf} download>{ui.requirements.downloadForm}</a>
+          <a className="btn btn-secondary" href={publicUrl(data.formPdf)} download>{ui.requirements.downloadForm}</a>
         ) : null}
       </p>
 

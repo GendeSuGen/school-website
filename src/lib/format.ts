@@ -17,4 +17,10 @@ export function todayISO(now: Date = new Date()): string {
 /** "(02) 8123-4567" -> "tel:0281234567" */
 export const telHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`;
 
+/** Path the site is served under, e.g. "/school-website" on GitHub Pages. Empty when served from the domain root. */
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+/** Prefix a /public file path (like a PDF form) with the base path. */
+export const publicUrl = (path: string) => `${BASE_PATH}${path}`;
+
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");

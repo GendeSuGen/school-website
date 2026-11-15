@@ -40,3 +40,11 @@ Colors are CSS variables at the top of `src/app/globals.css`.
 ## Adding another language later
 
 All fixed interface text (menu, buttons, headings) is in `src/lib/strings.ts`. To add a language, copy that object, translate it, and select it there. Editable content in `content/` would need a copy per language.
+
+## Publishing on GitHub Pages
+
+`.github/workflows/deploy.yml` builds and publishes the site. It runs on every push to `main`, once a day (so events move from Upcoming to Past), and on demand from the Actions tab.
+
+One-time setup on GitHub: open the repository, go to **Settings, Pages**, and set **Source** to **GitHub Actions**.
+
+The workflow sets the web address and base path from the repository name automatically. For a repo named `school-website` owned by `GendeSuGen`, the site is at `https://gendesugen.github.io/school-website/`. When you later use a custom domain, set `NEXT_PUBLIC_SITE_URL` to it and remove `NEXT_PUBLIC_BASE_PATH` in the workflow.
