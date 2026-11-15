@@ -36,3 +36,7 @@ The Upcoming and Past event split uses the build date, so rebuild the site daily
 ## Branding
 
 Colors are CSS variables at the top of `src/app/globals.css`.
+
+## Adding another language later
+
+All fixed interface text (menu, buttons, headings) is in `src/lib/strings.ts`. To add a language, copy that object, translate it, and select it there. Editable content in `content/` would need a copy per language.

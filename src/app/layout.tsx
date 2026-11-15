@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Footer, Header } from "../components/SiteChrome";
 import { getContent } from "../lib/content";
 import { SITE_URL } from "../lib/format";
+import { LANGUAGE } from "../lib/strings";
 import "./globals.css";
 
 export function generateMetadata(): Metadata {
@@ -17,7 +18,7 @@ export function generateMetadata(): Metadata {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   const { site } = getContent();
   return (
-    <html lang="en">
+    <html lang={LANGUAGE}>
       <body>
         <Header name={site.name} />
         <main id="main" className="container main">{children}</main>

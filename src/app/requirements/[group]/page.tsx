@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { RequirementsView } from "../../../components/RequirementsView";
 import { getContent } from "../../../lib/content";
+import { ui } from "../../../lib/strings";
 
 // One page per audience; the URLs are /requirements/enrollees/ and /requirements/transferees/.
 const GROUPS = ["enrollees", "transferees"] as const;
@@ -29,7 +30,7 @@ export default async function RequirementsGroupPage({ params }: PageProps<"/requ
 
   return (
     <>
-      <p className="no-print"><Link href="/requirements/">&larr; All requirements</Link></p>
+      <p className="no-print"><Link href="/requirements/">&larr; {ui.requirements.back}</Link></p>
       <h1>{data.title}</h1>
       <RequirementsView data={data} />
     </>

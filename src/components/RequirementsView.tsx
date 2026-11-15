@@ -1,4 +1,5 @@
 import { telHref } from "../lib/format";
+import { ui } from "../lib/strings";
 import type { Requirements } from "../lib/schemas";
 import { PrintButton } from "./PrintButton";
 
@@ -9,12 +10,12 @@ export function RequirementsView({ data }: { data: Requirements }) {
       <p className="no-print actions">
         <PrintButton />
         {data.formPdf ? (
-          <a className="btn btn-secondary" href={data.formPdf} download>Download the form (PDF)</a>
+          <a className="btn btn-secondary" href={data.formPdf} download>{ui.requirements.downloadForm}</a>
         ) : null}
       </p>
 
       <section aria-labelledby="docs">
-        <h2 id="docs">Documents to bring</h2>
+        <h2 id="docs">{ui.requirements.documents}</h2>
         <ul className="checklist">
           {data.documents.map((d) => (
             <li key={d.name}>
@@ -26,7 +27,7 @@ export function RequirementsView({ data }: { data: Requirements }) {
       </section>
 
       <section aria-labelledby="steps">
-        <h2 id="steps">Steps</h2>
+        <h2 id="steps">{ui.requirements.steps}</h2>
         <ol className="steps">
           {data.steps.map((s) => (
             <li key={s.title}><strong>{s.title}</strong><span>{s.description}</span></li>
@@ -36,7 +37,7 @@ export function RequirementsView({ data }: { data: Requirements }) {
 
       {data.deadlines.length ? (
         <section aria-labelledby="deadlines">
-          <h2 id="deadlines">Deadlines</h2>
+          <h2 id="deadlines">{ui.requirements.deadlines}</h2>
           <dl className="facts">
             {data.deadlines.map((d) => (
               <div key={d.label}><dt>{d.label}</dt><dd>{d.when}</dd></div>
@@ -47,7 +48,7 @@ export function RequirementsView({ data }: { data: Requirements }) {
 
       {data.fees.length ? (
         <section aria-labelledby="fees">
-          <h2 id="fees">Fees</h2>
+          <h2 id="fees">{ui.requirements.fees}</h2>
           <dl className="facts">
             {data.fees.map((f) => (
               <div key={f.label}><dt>{f.label}</dt><dd>{f.amount}</dd></div>
@@ -57,7 +58,7 @@ export function RequirementsView({ data }: { data: Requirements }) {
       ) : null}
 
       <section aria-labelledby="questions">
-        <h2 id="questions">Questions?</h2>
+        <h2 id="questions">{ui.requirements.questions}</h2>
         <p>
           {data.contact.office}: <a href={`mailto:${data.contact.email}`}>{data.contact.email}</a> ·{" "}
           <a href={telHref(data.contact.phone)}>{data.contact.phone}</a>

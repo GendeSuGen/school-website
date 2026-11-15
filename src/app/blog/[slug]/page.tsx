@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getContent, getPost } from "../../../lib/content";
 import { formatDate } from "../../../lib/format";
 import { renderMarkdown } from "../../../lib/markdown";
+import { ui } from "../../../lib/strings";
 
 export const dynamicParams = false;
 
@@ -29,7 +30,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
 
   return (
     <article className="prose">
-      <p><Link href="/blog/">&larr; All posts</Link></p>
+      <p><Link href="/blog/">&larr; {ui.blog.back}</Link></p>
       <h1>{post.title}</h1>
       <p className="meta">
         <span className="tag">{post.category}</span> <time dateTime={post.date}>{formatDate(post.date)}</time> · By {post.author}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getContent, getEvent } from "../../../lib/content";
 import { formatDateRange } from "../../../lib/format";
+import { ui } from "../../../lib/strings";
 
 export const dynamicParams = false;
 
@@ -24,7 +25,7 @@ export default async function EventPage({ params }: PageProps<"/events/[slug]">)
 
   return (
     <article className="prose">
-      <p><Link href="/events/">&larr; All events</Link></p>
+      <p><Link href="/events/">&larr; {ui.events.back}</Link></p>
       <h1>{event.title}</h1>
       <p className="meta"><span className="tag">{event.category}</span></p>
       <dl className="facts">

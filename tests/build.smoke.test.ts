@@ -38,6 +38,11 @@ describe("static export", () => {
     expect(html("")).toContain("Find us on the map");
   });
 
+  it("offers category filters on Blog and Events", () => {
+    expect(html("blog")).toContain("Filter posts by category");
+    expect(html("events")).toContain("Filter events by category");
+  });
+
   it("splits Home events using the build date, not stale content", () => {
     // Past events from the sample data must never appear in Home's upcoming list.
     expect(html("")).not.toContain("Foundation Day Celebration");
